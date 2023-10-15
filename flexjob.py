@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import csv
 import time
 
-language = 'java'
+language = 'python'
 pages = 2
 search_timeout = 0.1
 
@@ -12,6 +12,8 @@ base_url = 'https://www.flexjobs.com'
 search_url = f'/search?search={language}&page='
 
 jobs = []
+
+print(f'iniciando scrap de jobs buscando por linguagem - {language} buscando até: {pages} paginas')
 
 for page in range(1, pages + 1):
     
@@ -75,7 +77,7 @@ print(f'{len(jobs)} jobs encontrados no scrap')
 
 print('iniciando criação de arquivo')
 
-file_name = 'flexjob.csv'
+file_name = f'flexjob-{language}.csv'
 
 with open(file_name, 'w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=list(jobs[0].keys()))
